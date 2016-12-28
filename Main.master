@@ -1,0 +1,132 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Main.master.cs" Inherits="Main" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+       <title>: : Online Voting System : :</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link href="css/application.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+      <style type="text/css">
+          .style1
+          {
+              width: 100%;
+          }
+      </style>
+      <style type="text/css">
+      
+      .text
+      {
+          
+    width:229px; 
+    height:25px;
+    border:1px solid #d7d7c8;
+    background:#fff;
+    padding:3px 5px; 
+    margin-bottom:5px;
+    color:#969696;
+    font:13px Trebuchet MS, Arial, Helvetica, sans-serif;"
+          
+          }
+      </style>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+   <div id="dvmaincontainer">
+  <!--main div container starts here-->
+  <div id="dvtopcontainer">
+    <!-- top container starts here-->
+    <div id="dvlogocontainer">
+      <!-- logo container starts here-->
+	  <h1 >Online Voting System </h1>
+	  <h4>Best way to choose your </h4>
+      
+      <!-- logo container ends here-->
+    </div>
+    <div id="dvnavicontainer">
+      <!-- navogation div starts here-->
+      <img src="images/navi_left.jpg" alt="" />
+<div id="tabs1" >
+        <ul>
+          <!-- CSS Tabs -->
+          <li ><a href="voterhome.aspx"><span>Home</span></a></li>
+          <li><a href="voter_pro.aspx"><span>Profile</span></a></li>
+          <li><a href="voting.aspx"><span>Vote</span></a></li>
+          <li><a href="logout.aspx"><span>Logout</span></a></li>
+          <li><a href="AdminLogin.aspx"><span>Admin</span></a></li>
+        </ul>
+      </div>
+      <img src="images/navi_right.jpg" alt="" />
+      <!-- navogation div ends here-->
+    </div>
+    <!-- top container ends here-->
+  </div>
+  <div id="dvbodycontainer">
+    <!-- body div starts here-->
+    <div id="dvbannerbgcontainer" style="height:auto;">
+      <!-- banner bg div starts here-->
+    
+     
+      <!-- banner bg div ends here-->
+    </div>
+    <div id="dvleftpanel">
+      <!-- left pannel div starts here-->
+      <div id="topimage">
+        <!-- top left div starts here-->
+      Voter
+        <!--<img src="images/client.jpg" alt="Client Testimonials" width="274" height="34" title="Client Testimonials" /> -->
+        <!-- top left div end here-->
+      </div>
+      <div id="midcont">
+        <!-- left body div starts here-->
+       <h3>Welcome <asp:Label ID="Label1" runat="server" Text=""></asp:Label></h3> 
+       <br />
+        <p style="text-align:center;"><img src="<%
+        string image="vimages/flower.gif";
+        if(Session["uid"]!=null)
+        {
+            System.Data.DataSet  ds = DB.ExecuteDataSet("select image from votertab where userid='" + Session["uid"].ToString() + "'");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                image = ds.Tables[0].Rows[0]["image"].ToString();
+            }
+            Response.Write("vimage/"+image);
+            ds.Dispose();
+        }
+         %>" height="150px" width="150px"</p>
+     
+        <!-- left body div ends here-->
+      </div>
+      <div id="leftfoot"><span>Nice little Sidebar</span>
+        <p>This is where you can put some services text fillers.</p>
+        <p>The more you put the better</p>
+      </div>
+      <!-- left pannel div ends here-->
+    </div>
+    <div id="dvrightpanel">
+   <div id="notice" class="notice" runat="server"> </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+      
+   
+     
+      <!-- right panel div ends here-->
+    </div>
+    <!-- body div ends here-->
+  </div>
+  <div id="dvfootercontainer">
+    <!-- footer div starts here-->
+    <div id="foottop">
+      <p><span>Copyright © 2011 online voting system</span></p>
+      <div class="design"></div>
+    </div>
+    <!-- footer div ends here-->
+  </div>
+  <!--main div container ends here-->
+</div>
+    </form>
+</body>
+</html>
